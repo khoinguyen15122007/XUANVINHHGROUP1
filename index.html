@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile của Tran Minh Xuan Vinh</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient nền đẹp */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Nền tối để làm nổi bật nội dung */
+            padding: 30px;
+            border-radius: 25px;
+            width: 80%;
+            max-width: 1100px;
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5); /* Shadow tạo độ sâu */
+            transition: transform 0.3s ease; /* Hiệu ứng zoom nhẹ khi hover */
+        }
+
+        .container:hover {
+            transform: scale(1.05); /* Phóng to khi di chuột vào */
+        }
+
+        .profile-picture {
+            position: relative;
+        }
+
+        .profile-picture img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-picture img:hover {
+            transform: rotate(10deg); /* Hiệu ứng xoay nhẹ khi hover vào ảnh */
+        }
+
+        .upload-btn {
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .upload-btn:hover {
+            transform: scale(1.1); /* Tăng kích thước nút khi hover */
+        }
+
+        .profile-info h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .profile-info p {
+            font-size: 1.3em;
+            margin: 10px 0;
+            line-height: 1.5;
+            color: #f1f1f1;
+        }
+
+        .profile-info p strong {
+            color: #ffcc00; /* Màu vàng cho thông tin quan trọng */
+        }
+
+        /* Thêm một chút hiệu ứng cho các phần tử text */
+        .profile-info p:hover {
+            color: #ffcc00;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-picture">
+            <!-- Sử dụng ảnh từ URL mới -->
+            <img id="profileImage" src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:quality(100)/2021_3_1_637502063863317394_yasuo-1-2.jpg" alt="Profile Picture">
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click();">+</button>
+            <input type="file" id="fileInput" style="display:none;" accept="image/*" onchange="previewImage(event)">
+        </div>
+        <div class="profile-info">
+            <h1>Tran Minh Xuan Vinh</h1>
+            <p><strong>Age:</strong> 17</p>
+            <p><strong>Gender:</strong> Male</p>
+            <p><strong>Nationality:</strong> Vietnamese</p>
+            <p><strong>Hobby:</strong> Read Manga</p>
+            <p><strong>Dream:</strong> Becoming A Demon Slayer</p>
+        </div>
+    </div>
+
+    <script>
+        // Hàm để hiển thị ảnh khi người dùng tải lên
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('profileImage');
+                output.src = reader.result;
+
+                // Lưu ảnh vào localStorage
+                localStorage.setItem('profileImage', reader.result);
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // Kiểm tra và hiển thị ảnh nếu đã được lưu trong localStorage
+        window.onload = function() {
+            var savedImage = localStorage.getItem('profileImage');
+            if (savedImage) {
+                document.getElementById('profileImage').src = savedImage;
+            }
+        }
+    </script>
+</body>
+</html>
